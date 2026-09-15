@@ -66,6 +66,13 @@ docker run -p 3000:3000 --env-file .env.local lens
 The build args / runtime variables are the same ones documented in
 [`.env.example`](.env.example); see [`docs/self-hosting.md`](docs/self-hosting.md).
 
+## Contributing
+
+Bug reports and pull requests are welcome — see
+[CONTRIBUTING.md](CONTRIBUTING.md) for how this repository works, what tends to
+get accepted, and the [Contributor License Agreement](CLA.md) required before
+code can be merged (you keep your copyright).
+
 ## License
 
 Lens Community Edition is licensed under the **GNU AGPL v3.0** — see
