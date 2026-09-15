@@ -1,4 +1,16 @@
-# Lens — Community Edition
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/brand/lens-logo-dark.png">
+    <img src="public/brand/lens-logo-light.png" alt="Lens" width="300">
+  </picture>
+</p>
+
+<h1 align="center">Community Edition</h1>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-4756E1"></a>
+  <img alt="Self-hostable" src="https://img.shields.io/badge/self--hosted-Docker-4756E1">
+</p>
 
 **Lens** is a UX research repository and participant-management platform: recruit
 and manage participants, analyze interviews in a transcript workspace, run
