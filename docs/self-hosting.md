@@ -88,6 +88,14 @@ create the initial login.
 > `-e HOSTNAME=0.0.0.0` in that case. Normal port mapping (`-p 3000:3000`)
 > is unaffected.
 
+> **Never point `NEXT_PUBLIC_SUPABASE_URL` at `localhost`.** That value is used
+> by two callers: the browser *and* the Lens server inside the container. Inside
+> a container `localhost` is the container itself, so every server-side call
+> fails — first-run setup reports "Account create failed: fetch failed" while
+> the browser looks fine. Use a hostname that resolves the same from both: a
+> real domain in production, or the host's LAN IP when Supabase runs on the same
+> machine during a proof of concept.
+
 ## Step 4 — First-run setup (create the first admin)
 
 There's no platform-owner console in self-hosted, so the first admin is created
