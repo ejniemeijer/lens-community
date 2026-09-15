@@ -84,5 +84,7 @@ the script you embed in applications placed under test, is **MIT-licensed**
 included — carries no AGPL obligations; the AGPL covers the Lens server, not
 apps that merely send events to it.
 
-Lens is also available under a commercial license: the hosted cloud service and
-a supported self-hosted delivery, both at [lensresearch.app](https://lensresearch.app).
+Running Lens yourself under the AGPL is free and needs no agreement with
+anyone. The commercial offering is the hosted service at
+[lensresearch.app](https://lensresearch.app) — and, for organisations whose
+policy rules out AGPL, a commercial licence on request.

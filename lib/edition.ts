@@ -5,7 +5,7 @@
  *   console, customer onboarding, trials, plans, and seat caps are all on.
  * - "self-hosted" — a single-tenant build shipped to a licensed customer: the
  *   operator-only surface (the /admin console + cross-tenant account APIs) is
- *   blocked, trials are off, and seats are uncapped (perpetual license).
+ *   blocked, trials are off, and seats are uncapped (nothing to meter).
  *
  * Set NEXT_PUBLIC_DEPLOYMENT_MODE at build time (it's inlined into the client
  * bundle). Unset ⇒ "cloud", so existing cloud deploys are unaffected.

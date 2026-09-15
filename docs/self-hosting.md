@@ -1,9 +1,10 @@
 # Self-hosted edition — build & run
 
 The self-hosted edition is a **single-tenant** build of Lens for running on your
-own infrastructure. The same build ships two ways: **from source** (the
-community repository), or as a prebuilt, per-customer **Docker image** — the
-commercial delivery, which includes support and does not include source.
+own infrastructure. It is **free and open source** (AGPL-3.0): anyone can build
+and run it from the community repository, with no licence to buy and no
+agreement to sign. The commercial product is the hosted service; self-hosting
+is not something we sell.
 
 ## What's different from Cloud
 
@@ -13,7 +14,7 @@ the image). In this mode:
 - The **platform-owner console** (`/admin`) and the **cross-tenant account APIs**
   (`/api/admin/accounts`) return **404** — they don't exist for the customer.
 - **Trials** are off — a self-hosted license never expires.
-- **Seat caps** are off — unlimited researchers (perpetual license).
+- **Seat caps** are off — unlimited researchers (nothing is metered).
 
 Everything else — the repository, AI (with the customer's own key), GDPR tooling,
 per-workspace user management — works normally. The tenant-scoped
@@ -45,8 +46,8 @@ own account and admin.)
 ## Step 2 — Build the image
 
 `NEXT_PUBLIC_*` values are inlined at **build** time, so the public Supabase
-config is passed as build args (for commercial delivery: one image per
-customer, against that customer's Supabase project):
+config is passed as build args — one image per deployment, against that
+deployment's Supabase project:
 
 ```bash
 docker build -t lens-selfhosted \
@@ -56,7 +57,7 @@ docker build -t lens-selfhosted \
   .
 ```
 
-The image contains only the compiled standalone server (no source, no full
+The image contains only the compiled standalone server (no full
 `node_modules`), with the self-hosted edition baked in — about **315 MB**, and
 multi-arch (verified on arm64). `SOURCE_COMMIT` is optional but recommended: it
 stamps the build id shown on Settings → About and `/api/version`.
@@ -181,9 +182,8 @@ public URLs — GoTrue builds its links from them.
 
 ## Updating
 
-Apply the new SQL migrations first, then deploy the new build: source installs
-pull the release and rebuild; image customers receive a new image tag (rebuilt
-from the release they're moving to) and redeploy.
+Apply the new SQL migrations first, then deploy the new build: pull the release,
+rebuild the image, redeploy.
 
 "New" means the files in `supabase/migrations/` dated **after the release you
 are currently running** — apply them in filename order. They are idempotent, so
@@ -199,7 +199,6 @@ upgrade: the new code expects columns the old database lacks. Never re-run
 ## Editions note
 
 The operator surface (admin console, cross-tenant onboarding, trials) is
-disabled at runtime in every self-hosted build. The commercial Docker image
-additionally ships as compiled bundles rather than source, and the public
-community repository goes one step further: the operator code is physically
-absent from that snapshot.
+disabled at runtime in every self-hosted build, and the operator code is
+physically absent from the public community repository. Everything that does
+research is present; what is missing only ever managed the hosted service.

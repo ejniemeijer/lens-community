@@ -79,7 +79,7 @@ export function seatLimitFor(plan: string | null | undefined): number {
  * (including 0); null/undefined falls back to the plan.
  */
 export function effectiveSeatLimit(plan: string | null | undefined, override?: number | null): number {
-  if (isSelfHosted) return Infinity; // single-tenant perpetual license — no seat caps
+  if (isSelfHosted) return Infinity; // single-tenant install — nothing to meter, no seat caps
   return typeof override === "number" && override >= 0 ? override : seatLimitFor(plan);
 }
 
