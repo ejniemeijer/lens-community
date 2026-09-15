@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <rect width="360" height="320" fill="#F1F5F9"/>
+  <!-- Variant A: image-forward card -->
+  <rect x="20" y="20" width="320" height="280" rx="20" fill="#FFFFFF"/>
+  <!-- photo banner -->
+  <path d="M20 40 a20 20 0 0 1 20 -20 h280 a20 20 0 0 1 20 20 v112 h-320 z" fill="#1E293B"/>
+  <text x="180" y="104" font-size="44" text-anchor="middle">🔧</text>
+  <rect x="34" y="34" width="70" height="26" rx="13" fill="#F59E0B"/>
+  <text x="69" y="51" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">OPEN NOW</text>
+  <!-- body -->
+  <text x="34" y="192" font-size="18" font-weight="700" fill="#0F172A">PitStop Central</text>
+  <text x="34" y="214" font-size="13" fill="#64748B">Full service · Brakes · Tyres</text>
+  <text x="34" y="244" font-size="13" fill="#F59E0B">★★★★★ <tspan fill="#334155" font-weight="600">4.8</tspan> <tspan fill="#94A3B8">(312)</tspan></text>
+  <text x="34" y="268" font-size="12" fill="#94A3B8">1.2 km · from € 79</text>
+  <rect x="228" y="248" width="98" height="38" rx="12" fill="#F59E0B"/>
+  <text x="277" y="272" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">Book</text>
+</svg>

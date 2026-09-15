@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design tokens — HSL triplets consumed by tailwind.config.ts
+   ============================================================ */
+@layer base {
+  /* `.light` re-scopes the light tokens so a subtree (e.g. the participant
+     test runner) can force light mode under a dark ancestor. */
+  :root,
+  .light {
+    --canvas: 222 24% 97%;
+    --surface: 0 0% 100%;
+    --surface-2: 220 22% 97.5%;
+    --surface-hover: 220 20% 95%;
+    --overlay: 0 0% 100%;
+
+    --border: 220 18% 90%;
+    --border-strong: 220 15% 82%;
+    --ring: 234 82% 60%;
+
+    --foreground: 224 34% 14%;
+    --muted: 222 11% 42%;
+    --subtle: 220 9% 58%;
+
+    --primary: 234 72% 58%;
+    --primary-fg: 0 0% 100%;
+    --primary-soft: 234 90% 96%;
+
+    --success: 152 55% 38%;
+    --success-soft: 152 58% 94%;
+    --warning: 32 88% 44%;
+    --warning-soft: 38 92% 92%;
+    --danger: 356 64% 52%;
+    --danger-soft: 356 82% 96%;
+    --info: 209 82% 50%;
+    --info-soft: 205 90% 95%;
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --canvas: 225 28% 7%;
+    --surface: 224 24% 10.5%;
+    --surface-2: 224 20% 13.5%;
+    --surface-hover: 224 17% 17%;
+    --overlay: 224 24% 13%;
+
+    --border: 224 16% 21%;
+    --border-strong: 224 13% 30%;
+    --ring: 234 84% 70%;
+
+    --foreground: 220 24% 94%;
+    --muted: 220 12% 65%;
+    --subtle: 220 10% 50%;
+
+    --primary: 234 84% 70%;
+    --primary-fg: 226 40% 10%;
+    --primary-soft: 234 40% 22%;
+
+    --success: 152 48% 52%;
+    --success-soft: 152 34% 17%;
+    --warning: 38 90% 60%;
+    --warning-soft: 36 46% 19%;
+    --danger: 356 72% 65%;
+    --danger-soft: 356 42% 21%;
+    --info: 205 84% 63%;
+    --info-soft: 205 46% 19%;
+
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: hsl(var(--canvas));
+    color: hsl(var(--foreground));
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.24);
+  }
+
+  /* Focus visibility */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   Scrollbars
+   ============================================================ */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border-strong)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border-strong));
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--subtle));
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/* ============================================================
+   Categorical accent palette (tags, themes, personas, columns)
+   Each class exposes --a-bg / --a-fg / --a-border / --a-solid.
+
+   IMPORTANT: deliberately NOT inside @layer — these class names are
+   composed at runtime (`accent-${color}`), and Tailwind tree-shakes
+   layer rules whose names never appear verbatim in source files.
+   ============================================================ */
+  /* Light-mode values are deliberately saturated so tags, kanban lanes,
+     and affinity clusters read as colorful as they do in dark mode. */
+  .accent-slate  { --a-solid: 215 16% 47%; --a-bg: 215 24% 90%; --a-fg: 215 25% 28%; --a-border: 215 18% 78%; }
+  .accent-blue   { --a-solid: 214 90% 52%; --a-bg: 214 95% 90%; --a-fg: 216 74% 36%; --a-border: 214 85% 76%; }
+  .accent-indigo { --a-solid: 234 72% 58%; --a-bg: 234 92% 91%; --a-fg: 234 62% 44%; --a-border: 234 78% 79%; }
+  .accent-violet { --a-solid: 258 74% 60%; --a-bg: 258 92% 92%; --a-fg: 258 60% 46%; --a-border: 258 76% 81%; }
+  .accent-purple { --a-solid: 276 62% 56%; --a-bg: 276 78% 91%; --a-fg: 276 54% 42%; --a-border: 276 62% 80%; }
+  .accent-pink   { --a-solid: 330 72% 56%; --a-bg: 330 84% 91%; --a-fg: 330 64% 42%; --a-border: 330 72% 80%; }
+  .accent-rose   { --a-solid: 349 74% 56%; --a-bg: 349 88% 91%; --a-fg: 349 66% 42%; --a-border: 349 76% 80%; }
+  .accent-red    { --a-solid: 356 68% 52%; --a-bg: 356 84% 91%; --a-fg: 356 64% 40%; --a-border: 356 74% 80%; }
+  .accent-orange { --a-solid: 24 88% 50%;  --a-bg: 28 92% 88%;  --a-fg: 22 76% 36%;  --a-border: 26 86% 74%; }
+  .accent-amber  { --a-solid: 38 92% 46%;  --a-bg: 43 94% 85%;  --a-fg: 32 80% 32%;  --a-border: 40 88% 70%; }
+  .accent-lime   { --a-solid: 92 58% 42%;  --a-bg: 90 66% 85%;  --a-fg: 96 62% 25%;  --a-border: 92 54% 68%; }
+  .accent-green  { --a-solid: 152 58% 38%; --a-bg: 152 58% 87%; --a-fg: 154 62% 24%; --a-border: 152 50% 68%; }
+  .accent-teal   { --a-solid: 174 72% 36%; --a-bg: 174 62% 85%; --a-fg: 176 70% 23%; --a-border: 174 54% 65%; }
+  .accent-cyan   { --a-solid: 194 82% 42%; --a-bg: 194 80% 86%; --a-fg: 196 76% 27%; --a-border: 194 72% 69%; }
+
+  .dark .accent-slate  { --a-bg: 215 18% 22%; --a-fg: 215 20% 78%; --a-border: 215 14% 32%; }
+  .dark .accent-blue   { --a-bg: 214 60% 20%; --a-fg: 214 90% 80%; --a-border: 214 50% 32%; }
+  .dark .accent-indigo { --a-bg: 234 52% 24%; --a-fg: 234 92% 84%; --a-border: 234 46% 36%; }
+  .dark .accent-violet { --a-bg: 258 48% 26%; --a-fg: 258 92% 86%; --a-border: 258 44% 38%; }
+  .dark .accent-purple { --a-bg: 276 42% 26%; --a-fg: 276 82% 86%; --a-border: 276 38% 38%; }
+  .dark .accent-pink   { --a-bg: 330 44% 26%; --a-fg: 330 88% 86%; --a-border: 330 40% 38%; }
+  .dark .accent-rose   { --a-bg: 349 46% 26%; --a-fg: 349 90% 86%; --a-border: 349 42% 38%; }
+  .dark .accent-red    { --a-bg: 356 46% 25%; --a-fg: 356 88% 84%; --a-border: 356 42% 37%; }
+  .dark .accent-orange { --a-bg: 24 54% 22%;  --a-fg: 30 92% 76%;  --a-border: 24 46% 34%; }
+  .dark .accent-amber  { --a-bg: 38 52% 20%;  --a-fg: 42 94% 72%;  --a-border: 38 44% 32%; }
+  .dark .accent-lime   { --a-bg: 92 40% 20%;  --a-fg: 90 70% 74%;  --a-border: 92 34% 30%; }
+  .dark .accent-green  { --a-bg: 152 42% 18%; --a-fg: 152 62% 72%; --a-border: 152 36% 30%; }
+  .dark .accent-teal   { --a-bg: 174 48% 17%; --a-fg: 174 66% 68%; --a-border: 174 40% 28%; }
+  .dark .accent-cyan   { --a-bg: 194 54% 18%; --a-fg: 194 80% 72%; --a-border: 194 46% 30%; }
+
+/* ============================================================
+   Helpers (outside @layer so they survive Tailwind tree-shaking
+   even when referenced only dynamically)
+   ============================================================ */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.glass {
+  background-color: hsl(var(--surface) / 0.72);
+  backdrop-filter: saturate(1.4) blur(12px);
+}
+
+/* Text mark used by the transcript workspace highlighter */
+mark[data-hl] {
+  border-radius: 3px;
+  padding: 0.5px 1px;
+  background-color: hsl(var(--a-bg));
+  box-shadow: inset 0 -1px 0 hsl(var(--a-solid) / 0.5);
+  color: inherit;
+  cursor: pointer;
+}

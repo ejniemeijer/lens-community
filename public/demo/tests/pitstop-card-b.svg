@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <rect width="360" height="320" fill="#F1F5F9"/>
+  <!-- Variant B: info-forward, compact horizontal card -->
+  <rect x="20" y="46" width="320" height="228" rx="20" fill="#FFFFFF"/>
+  <!-- left icon tile -->
+  <rect x="40" y="66" width="92" height="92" rx="16" fill="#1E293B"/>
+  <text x="86" y="126" font-size="34" text-anchor="middle">🔧</text>
+  <!-- title + rating inline -->
+  <text x="150" y="90" font-size="18" font-weight="700" fill="#0F172A">PitStop Central</text>
+  <rect x="150" y="102" width="112" height="24" rx="12" fill="#DCFCE7"/>
+  <text x="206" y="119" font-size="11" font-weight="800" fill="#15803D" text-anchor="middle">★ 4.8 · OPEN</text>
+  <text x="150" y="150" font-size="13" fill="#64748B">1.2 km away · 312 reviews</text>
+  <!-- service chips -->
+  <g font-size="11" font-weight="600">
+    <rect x="40" y="176" width="74" height="26" rx="13" fill="#EEF2FF"/><text x="77" y="193" fill="#4F46E5" text-anchor="middle">Brakes</text>
+    <rect x="122" y="176" width="64" height="26" rx="13" fill="#EEF2FF"/><text x="154" y="193" fill="#4F46E5" text-anchor="middle">Tyres</text>
+    <rect x="194" y="176" width="96" height="26" rx="13" fill="#EEF2FF"/><text x="242" y="193" fill="#4F46E5" text-anchor="middle">Full service</text>
+  </g>
+  <!-- price + CTA row -->
+  <line x1="40" y1="222" x2="320" y2="222" stroke="#E2E8F0"/>
+  <text x="40" y="252" font-size="12" fill="#94A3B8">From</text>
+  <text x="40" y="252" font-size="12" fill="#94A3B8"><tspan x="76" font-size="17" font-weight="800" fill="#0F172A">€ 79</tspan></text>
+  <rect x="212" y="230" width="108" height="38" rx="12" fill="#F59E0B"/>
+  <text x="266" y="254" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">Book now</text>
+</svg>
