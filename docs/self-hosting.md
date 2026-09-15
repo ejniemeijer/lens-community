@@ -115,6 +115,42 @@ The setup screen is a **single-use door**: once any login exists, `/api/setup`
 returns "already set up" and the screen never appears again. It only works in the
 self-hosted edition.
 
+## Step 5 — Domain, TLS and participant links
+
+Unmoderated tests produce two URLs that leave your server: the **participant
+link** (`/t/<token>`) and the **beacon snippet** the researcher pastes into the
+application under test. Both are built from `window.location.origin` — the
+address Lens is open on at that moment — so they follow your domain
+automatically, with nothing to configure. (`NEXT_PUBLIC_APP_URL` is not
+involved; it is only used in welcome-email text.)
+
+That convenience has three consequences worth planning for.
+
+**Always open Lens on its domain, never on the server's IP or port.** Because
+links are copied from the address bar, browsing `http://10.0.0.4:3000` produces
+participant links containing `10.0.0.4`, which are useless to anyone outside
+that network — and nothing warns you. Put the app behind a reverse proxy at the
+real hostname and make that the bookmark for everyone.
+
+**The participant page must be reachable by participants.** `/t/<token>` is the
+one route that needs no login, by design: participants have no account. If the
+server sits behind a corporate firewall or a VPN, colleagues can take tests but
+customers and other external participants cannot reach the page at all. Decide
+which audience you need before choosing where to place the deployment.
+
+**Terminate TLS.** The application under test is normally served over HTTPS
+(hosted prototypes, staging builds), and a browser silently blocks requests
+from an HTTPS page to an HTTP endpoint as mixed content. Without a certificate
+the participant page still loads, but the beacon data never arrives — clicks,
+rage clicks and success detection quietly stay empty. A certificate on the
+reverse proxy is enough.
+
+Cross-origin traffic itself needs no configuration: the beacon endpoints send
+permissive CORS headers and answer preflight requests deliberately, because the
+origin of the application under test cannot be known in advance. Authorisation
+there is the per-session secret in the `?lens=` parameter, not the origin, and
+the endpoint caps batch size and event count.
+
 ## Fully self-hosted: your own Supabase too
 
 Nothing above requires Supabase's hosted service. Lens talks to a self-hosted
